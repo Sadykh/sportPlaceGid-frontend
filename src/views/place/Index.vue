@@ -53,7 +53,11 @@
                                 <p class="card-text">{{ item.description }} </p>
                                 <div class="d-flex justify-content-between float-right">
                                     <div class="btn-group">
-                                        <a class="btn btn-sm btn-outline-secondary btn-view" href="place_view.html">Просмотреть</a>
+                                        <router-link :to="{name: 'PlaceView', params: {id: item.id}}"
+                                                     v-slot="{ href, route, navigate, isActive, isExactActive }">
+                                            <a class="btn btn-sm btn-outline-secondary btn-view" :href="href"
+                                               @click="navigate">Просмотреть</a>
+                                        </router-link>
                                         <!--                                        <a class="btn btn-sm btn-outline-secondary btn-view" href="place_edit.html">Отредактировать</a>-->
                                     </div>
                                 </div>

@@ -57,7 +57,15 @@ export default new Router({
                     name: 'PlaceIndex',
                     component: () => import('./views/place/Index.vue'),
                     meta: {
-                        title: "Войти",
+                        title: "Список мест",
+                    }
+                },
+                {
+                    path: ':id',
+                    name: 'PlaceView',
+                    component: () => import('./views/place/View.vue'),
+                    meta: {
+                        title: "Просмотр места",
                     }
                 },
             ]
