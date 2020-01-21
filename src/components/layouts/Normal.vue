@@ -27,6 +27,7 @@
 
 </template>
 
+
 <script>
     import {api} from "../../api";
 
@@ -42,6 +43,11 @@
                 document.title = to.meta.title
             }
         },
+        mounted() {
+            let recaptchaScript = document.createElement('script')
+            recaptchaScript.setAttribute('src', '/js/VueBootstrapTypeahead.umd.min.js')
+            document.head.appendChild(recaptchaScript)
+        },
         methods: {
             logoutClick(e) {
                 e.preventDefault()
@@ -52,3 +58,4 @@
         },
     }
 </script>
+

@@ -5,6 +5,7 @@ import user from './store/modules/user'
 import city from './store/modules/city'
 import category from './store/modules/category'
 import place from './store/modules/place'
+import placeLevel from './store/modules/placeLevel'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ export default new Vuex.Store({
     user,
     city,
     category,
-    place
+    place,
+    placeLevel
   },
   state: {
     identity: null

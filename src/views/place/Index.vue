@@ -4,7 +4,7 @@
         </div>
         <b-form @submit="searchSubmit">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <b-form-group label="Город" label-for="city">
                         <b-form-select id="city" v-model="form.city" :options="cityOptions"
                                        class="form-control">
@@ -14,7 +14,7 @@
                         </b-form-select>
                     </b-form-group>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <b-form-group label="Категория" label-for="category">
                         <b-form-select id="category" v-model="form.category" :options="categoryOptions"
                                        class="form-control">
@@ -28,6 +28,16 @@
                     <div class="form-group">
                         <label>&nbsp;</label>
                         <button type="submit" class="btn btn-primary" style="width: 100%; ">Поискать</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <router-link :to="{name: 'PlaceCreate'}"
+                                     v-slot="{ href, route, navigate, isActive, isExactActive }">
+                            <a class="btn btn-success" style="width: 100%; " :href="href"
+                               @click="navigate">Добавить</a>
+                        </router-link>
                     </div>
                 </div>
             </div>

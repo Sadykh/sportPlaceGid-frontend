@@ -5,5 +5,6 @@ module.exports = {
                 "va": 'vue2-admin-lte/src'
             },
         }
-    }
+    },
+    publicPath: "/sport-place-gid/"
 }

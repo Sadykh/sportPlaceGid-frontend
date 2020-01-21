@@ -61,6 +61,14 @@ export default new Router({
                     }
                 },
                 {
+                    path: 'create',
+                    name: 'PlaceCreate',
+                    component: () => import('./views/place/Create.vue'),
+                    meta: {
+                        title: "Добавление места",
+                    }
+                },
+                {
                     path: ':id',
                     name: 'PlaceView',
                     component: () => import('./views/place/View.vue'),
