@@ -52,14 +52,24 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label :for="`addressSearch`">Адрес:</label>
-                                <vue-bootstrap-typeahead
-                                        :data="addresses"
-                                        v-model="addressSearch"
-                                        :serializer="s => s.text"
-                                        placeholder="Введите адрес"
-                                        @hit="selectedAddress = $event"
-                                ></vue-bootstrap-typeahead>
+                                <div class="form-group">
+                                    <label :for="`address`">Адрес:</label>
+                                    <b-form-input id="address" v-model="form.address"></b-form-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label :for="`latitude`">Широта:</label>
+                                <b-form-input id="latitude" v-model="form.latitude"></b-form-input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label :for="`longitude`">Долгота:</label>
+                                <b-form-input id="longitude" v-model="form.longitude"></b-form-input>
                             </div>
                         </div>
                     </div>
@@ -331,7 +341,10 @@
                     working_hours_weekend_from: null,
                     working_hours_weekend_to: null,
                     routerList: [],
-                    serviceList: []
+                    serviceList: [],
+                    address: null,
+                    longitude: null,
+                    latitude: null,
                 },
                 service: null,
                 router: {
@@ -340,9 +353,6 @@
                     length: null,
                     height: null
                 },
-                addresses: [],
-                addressSearch: '',
-                selectedAddress: null
             }
         },
         watch: {

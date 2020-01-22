@@ -125,11 +125,7 @@
 
                 <div class="row" style="margin: 20px 0;">
                     <div class="col-md-8">
-                        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 420px;">
-                            <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                    frameborder="0" s
-                                    style="border:0; width: 100%; height: 420px" allowfullscreen></iframe>
-                        </div>
+                        <div id="map" style="height: 420px; margin-bottom: 10px"></div>
                     </div>
                     <div class="col-md-4">
                         <dl>
@@ -138,11 +134,9 @@
                             <dt>Категория</dt>
                             <dd>{{item.category_name}}</dd>
                             <dt>Адрес</dt>
-                            <dd>Московское шоссе 125</dd>
-                            <dt>Адрес</dt>
-                            <dd>Московское шоссе 125</dd>
+                            <dd>{{item.address}}</dd>
                             <dt>Координаты</dt>
-                            <dd>58.123123, 62.12313123</dd>
+                            <dd>{{item.latitude}}, {{item.longitude}}</dd>
                         </dl>
                     </div>
                 </div>
@@ -205,9 +199,29 @@
         created() {
             this.load()
         },
+        data() {
+            return {
+                myMap: null
+            }
+        },
         methods: {
+            renderMaps() {
+                this.myMap.geoObjects
+                    .add(new ymaps.Placemark([this.item.latitude, this.item.longitude], {
+                        balloonContent: this.item.name
+                    }));
+            },
             async load() {
                 this.$store.dispatch('place/fetchOne', this.$route.params.id);
+                const ready = await this.$store.dispatch('place/fetchAll');
+                if (ready) {
+                    this.placesFiltered = this.places;
+                    this.myMap = new ymaps.Map("map", {
+                        center: [59.956359, 30.310081],
+                        zoom: 11
+                    });
+                    ymaps.ready(this.renderMaps());
+                }
             }
         }
     }
