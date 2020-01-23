@@ -22,47 +22,8 @@
                         <li data-target="#myCarousel" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-
-                            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                                 width="950" height="300" xmlns="http://www.w3.org/2000/svg"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-                                 aria-label="Placeholder: 900x300"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#eee"></rect>
-                                <text x="50%" y="50%" fill="#aaa" dy=".3em">950x300</text>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%"
-                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                 focusable="false" role="img">
-                                <rect width="100%" height="100%" fill="#777"/>
-                            </svg>
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1>Another example headline.</h1>
-                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
-                                        porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-                                        elit.</p>
-                                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%"
-                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                 focusable="false" role="img">
-                                <rect width="100%" height="100%" fill="#777"/>
-                            </svg>
-                            <div class="container">
-                                <div class="carousel-caption text-right">
-                                    <h1>One more for good measure.</h1>
-                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
-                                        porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-                                        elit.</p>
-                                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                                </div>
-                            </div>
+                        <div class="carousel-item active" v-for="value in item.imageList">
+                            <img :src="value.path" alt="">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -76,51 +37,9 @@
                 </div>
 
                 <div class="row" style="margin-top: 20px">
-                    <div class="col-md-3">
-                        <svg class="bd-placeholder-img img-thumbnail" width="200" height="200"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img"
-                             aria-label="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera: 200x200">
-                            <title>A generic square placeholder image with a white border around it, making it resemble
-                                a photograph taken with an old instant camera</title>
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="30%" y="50%" fill="#dee2e6" dy=".3em">200x200</text>
-                        </svg>
+                    <div class="col-md-3" v-for="(value, key) in item.imageList" :key="'image-' + key">
+                        <img :src="value.path" alt="" class="img-thumbnail">
                     </div>
-                    <div class="col-md-3">
-                        <svg class="bd-placeholder-img img-thumbnail" width="200" height="200"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img"
-                             aria-label="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera: 200x200">
-                            <title>A generic square placeholder image with a white border around it, making it resemble
-                                a photograph taken with an old instant camera</title>
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="30%" y="50%" fill="#dee2e6" dy=".3em">200x200</text>
-                        </svg>
-                    </div>
-                    <div class="col-md-3">
-                        <svg class="bd-placeholder-img img-thumbnail" width="200" height="200"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img"
-                             aria-label="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera: 200x200">
-                            <title>A generic square placeholder image with a white border around it, making it resemble
-                                a photograph taken with an old instant camera</title>
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="30%" y="50%" fill="#dee2e6" dy=".3em">200x200</text>
-                        </svg>
-                    </div>
-                    <div class="col-md-3">
-                        <svg class="bd-placeholder-img img-thumbnail" width="200" height="200"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img"
-                             aria-label="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera: 200x200">
-                            <title>A generic square placeholder image with a white border around it, making it resemble
-                                a photograph taken with an old instant camera</title>
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                            <text x="30%" y="50%" fill="#dee2e6" dy=".3em">200x200</text>
-                        </svg>
-                    </div>
-
                 </div>
 
                 <div class="row" style="margin: 20px 0;">

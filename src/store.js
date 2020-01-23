@@ -6,6 +6,7 @@ import city from './store/modules/city'
 import category from './store/modules/category'
 import place from './store/modules/place'
 import placeLevel from './store/modules/placeLevel'
+import fileImage from './store/modules/fileImage'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
     city,
     category,
     place,
-    placeLevel
+    placeLevel,
+    fileImage
   },
   state: {
     identity: null

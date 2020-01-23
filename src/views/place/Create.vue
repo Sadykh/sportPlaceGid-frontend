@@ -137,7 +137,8 @@
                             <ol>
                                 <li v-for="(value, key) in form.serviceList" :key="'service-' + key">
                                     {{value.name}}
-                                    <a href="#" v-bind:data-id="key" @click="deleteService" class="btn btn-sm btn-danger">Удалить</a>
+                                    <a href="#" v-bind:data-id="key" @click="deleteService"
+                                       class="btn btn-sm btn-danger">Удалить</a>
                                 </li>
                             </ol>
                         </div>
@@ -204,6 +205,18 @@
                         </tr>
                         </tbody>
                     </table>
+                    <h3>Фотографии</h3>
+
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-md-12">
+                            <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
+                        </div>
+                        <div class="col-md-3" v-for="(value, key) in form.imageList" :key="'image-' + key">
+                            <img :src="value.path" alt="" class="img-thumbnail">
+                            <a href="#" v-bind:data-id="value.name" @click="deleteImage" class="btn btn-sm btn-danger"
+                               style="margin: 10px 5px 0 0">Удалить</a>
+                        </div>
+                    </div>
                     <button class="btn btn-lg btn-success" style="margin: 20px auto 0 auto; display: block">Сохранить
                     </button>
                 </b-form>
@@ -231,6 +244,7 @@
                 categoryList: 'category/items',
                 levelList: 'placeLevel/items',
                 isLoading: 'city/isLoading',
+                fileImage: 'fileImage/item',
             }),
             cityOptions() {
                 return this.cityList.map((item) => {
@@ -327,7 +341,29 @@
                 console.log(serviceId);
                 this.form.serviceList = this.form.serviceList.filter(item => parseInt(item.deleteId) !== parseInt(serviceId))
                 console.log(this.form.serviceList)
-            }
+            },
+            async uploadImage(event) {
+                let data = new FormData();
+                data.append('file', event.target.files[0]);
+
+                const result = await this.$store.dispatch('fileImage/upload', data);
+                if (result) {
+                    console.log(this.fileImage);
+                    this.form.imageList.push({
+                        name: this.fileImage.name,
+                        path: 'http://localhost:8081/images/' + this.fileImage.name,
+                        deleteId: this.form.imageList.length
+                    });
+                    console.log(this.form.imageList);
+                }
+            },
+            async deleteImage(e) {
+                e.preventDefault();
+                const elementId = e.toElement.attributes['data-id'].value;
+                this.form.imageList = this.form.imageList.filter(item => item.name !== elementId)
+                console.log(elementId);
+                console.log(this.form.imageList);
+            },
         },
         data() {
             return {
@@ -342,6 +378,7 @@
                     working_hours_weekend_to: null,
                     routerList: [],
                     serviceList: [],
+                    imageList: [],
                     address: null,
                     longitude: null,
                     latitude: null,
