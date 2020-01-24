@@ -83,7 +83,10 @@
                 if (this.form.password !== this.form.password_repeat) {
                     alert("Пароли не совпадают");
                 } else {
-                    await this.$store.dispatch('user/signup', {data: this.form})
+                    const isSuccess = await this.$store.dispatch('user/signup', {data: this.form})
+                    if (isSuccess) {
+                        this.$router.push({name: 'PlaceIndex'})
+                    }
                 }
             }
         }
